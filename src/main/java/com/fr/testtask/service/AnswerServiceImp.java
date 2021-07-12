@@ -10,6 +10,7 @@ import com.fr.testtask.repository.AnswerRepo;
 import com.fr.testtask.repository.QuestionRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
 import java.util.Optional;
 
 @Service
@@ -51,9 +52,12 @@ public class AnswerServiceImp implements AnswerService {
         }
         Question question = questionOptional.get();
         Answer answer = answerOptional.get();
-        //TODO if ||
-        if ((question.getPoll().getStartDate() == null)
-                && (answer.getQuestion().getPoll().getStartDate() == null)) {
+
+        if ((question.getPoll() == null || question.getPoll().getStartDate() == null)
+                &&
+                (answer.getQuestion() == null
+                        || answer.getQuestion().getPoll() == null
+                        || answer.getQuestion().getPoll().getStartDate() == null)) {
             answer.setQuestion(question);
             answerRepo.save(answer);
         } else throw new PollIsStartException("Poll is started");
