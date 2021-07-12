@@ -1,11 +1,11 @@
 package com.fr.testtask.service;
 
 import com.fr.testtask.model.dto.PollDto;
-import com.fr.testtask.repository.PollRepo;
 import com.fr.testtask.repository.UserAnswersRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,11 +22,13 @@ public class UserAnswersServiceImpl implements UserAnswersService {
     }
 
     @Override
-    public Set<PollDto> getUserAnswer(Long id) {
-        return userAnswersRepo.findAll().stream().filter(x -> x.getUser().getId().equals(id)).
-                map(x -> x.getQuestion().getPoll()).collect(Collectors.toSet())
-                .stream().map(x -> modelMapper.map(x, PollDto.class)).collect(Collectors.toSet());
-
+    public List<PollDto> getUserAnswer(Long userId) {
+        return userAnswersRepo.findAll().stream()
+                .filter(userAnswer -> userAnswer.getUser().getId().equals(userId))
+                .map(answer -> answer.getQuestion().getPoll())
+                .distinct()
+                .map(poll -> modelMapper.map(poll, PollDto.class))
+                .collect(Collectors.toList());
     }
 
 }

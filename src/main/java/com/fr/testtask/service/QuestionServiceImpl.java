@@ -67,7 +67,6 @@ public class QuestionServiceImpl implements QuestionService {
                 .collect(Collectors.toList());
     }
 
-
     @Override
     public void editQuestion(QuestionSetDto questionSetDto, Long qId) {
         Optional<Question> questionOptional = questionRepo.findById(qId);

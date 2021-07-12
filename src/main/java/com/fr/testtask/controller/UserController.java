@@ -84,7 +84,7 @@ public class UserController {
 
     @Operation(summary = "Получение всех опросов с ответами авторизированного пользователя с {userId}")
     @GetMapping("/{userId}/answers")
-    public Set<PollDto> getUserAnswerById(@PathVariable Long userId) {
+    public List<PollDto> getUserAnswerById(@PathVariable Long userId) {
         return userAnswersService.getUserAnswer(userId);
     }
 }

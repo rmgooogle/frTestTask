@@ -55,7 +55,7 @@ CREATE TABLE Answer
 (
     id          LONG         NOT NULL AUTO_INCREMENT,
     answer      VARCHAR(254) NOT NULL,
-    is_true     BOOL         NOT NULL,
+    is_true     BOOL         NOT NULL DEFAULT FALSE,
     question_id BIGINT REFERENCES Question (id)
 );
 
@@ -85,7 +85,7 @@ CREATE TABLE USER
     username VARCHAR(128),
     password VARCHAR(128),
     role_id  LONG REFERENCES ROLE (id),
-    active   BOOL not null,
+    active   BOOL NOT NULL DEFAULT TRUE,
     PRIMARY KEY (id)
 );
 
