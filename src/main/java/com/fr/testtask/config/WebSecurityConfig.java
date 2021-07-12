@@ -29,7 +29,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/anon/**").permitAll()
                 .antMatchers("/user/**").authenticated()
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
-                //.antMatchers("/user/**").hasAnyAuthority("USER", "ANONIM", "ADMIN")
                 .and().formLogin().defaultSuccessUrl("/user/poll/all", true).permitAll()
                 .and().logout()
                 .logoutUrl("/logout")

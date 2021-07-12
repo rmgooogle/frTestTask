@@ -1,7 +1,11 @@
 package com.fr.testtask.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.IM_USED)
 public class PollIsStartException extends RuntimeException {
-    public PollIsStartException(String poll_is_started) {
-        super(poll_is_started);
+    public PollIsStartException(String pollIsStarted) {
+        super(pollIsStarted);
     }
 }

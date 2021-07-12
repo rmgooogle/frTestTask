@@ -65,7 +65,7 @@ public class PollServiceImpl implements PollService {
             throw new UsernameNotFoundException("Poll not found");
         }
 
-        userAnsweredDto.stream().forEach(userAnsweredDto1 -> userAnswersRepo.save(new UserAnswers(
+        userAnsweredDto.forEach(userAnsweredDto1 -> userAnswersRepo.save(new UserAnswers(
                 userAnsweredDto1.getId(),
                 userAnsweredDto1.getAnswer(),
                 userRepository.getById(userId),

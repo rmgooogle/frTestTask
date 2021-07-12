@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class PollNotFoundException extends RuntimeException {
-    public PollNotFoundException(String poll_not_found) {
-        super(poll_not_found);
+    public PollNotFoundException(String pollNotFound) {
+        super(pollNotFound);
     }
 }

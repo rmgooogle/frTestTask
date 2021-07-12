@@ -10,10 +10,7 @@ import com.fr.testtask.repository.AnswerRepo;
 import com.fr.testtask.repository.QuestionRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class AnswerServiceImp implements AnswerService {
@@ -26,18 +23,6 @@ public class AnswerServiceImp implements AnswerService {
         this.answerRepo = answerRepo;
         this.modelMapper = modelMapper;
         this.questionRepo = questionRepo;
-    }
-
-    public List<AnswerDto> getAll() {
-        return answerRepo.findAll()
-                .stream()
-                .map(answer -> modelMapper.map(answer, AnswerDto.class))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public AnswerDto getAnswersById(Long id) {
-        return modelMapper.map(answerRepo.getById(id), AnswerDto.class);
     }
 
     @Override

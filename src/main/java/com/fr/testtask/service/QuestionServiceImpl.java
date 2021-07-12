@@ -30,11 +30,6 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public QuestionViewDto getById(Long id) {
-        return modelMapper.map(questionRepo.getById(id), QuestionViewDto.class);
-    }
-
-    @Override
     public void create(QuestionSetDto questionSetDto) {
         questionRepo.save(modelMapper.map(questionSetDto, Question.class));
     }
@@ -49,7 +44,7 @@ public class QuestionServiceImpl implements QuestionService {
         if (pollOptional.isEmpty()) {
             throw new PollNotFoundException("Poll not found");
         }
-        if ((pollRepo.findById(pollId).get().getStartDate() != null) && (questionOptional.get().getPoll().getStartDate() == null)) {
+        if ((pollOptional.get().getStartDate() != null) && (questionOptional.get().getPoll().getStartDate() == null)) {
             throw new PollIsStartException("Poll is started");
         } else {
             questionOptional.get().setPoll(pollOptional.get());

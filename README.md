@@ -4,7 +4,7 @@ _______________________________
 
 **1. Скопировать репозиторий:**
 ``
- git clone hhttps://github.com/rmgooogle/frTestTask
+ git clone https://github.com/rmgooogle/frTestTask
 ``
 
 **2. Открыть проект, используя IDEA**

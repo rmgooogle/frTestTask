@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface QuestionService {
 
-    QuestionViewDto getById(Long id);
 
     void create(QuestionSetDto question);
 

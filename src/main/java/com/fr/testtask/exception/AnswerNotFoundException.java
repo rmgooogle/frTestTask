@@ -1,7 +1,11 @@
 package com.fr.testtask.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.NOT_FOUND)
 public class AnswerNotFoundException extends RuntimeException {
-    public AnswerNotFoundException(String question_not_found) {
-        super(question_not_found);
+    public AnswerNotFoundException(String answerNotFound) {
+        super(answerNotFound);
     }
 }
