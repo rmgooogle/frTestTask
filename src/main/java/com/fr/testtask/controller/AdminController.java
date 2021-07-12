@@ -86,6 +86,13 @@ public class AdminController {
         questionService.deleteById(id);
     }
 
+    @Operation(summary = "Получение ответа по id")
+    @GetMapping("/answer/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public AnswerDto getAnswerById(@PathVariable Long id) {
+        return answerService.getAnswerById(id);
+    }
+
     @Operation(summary = "Добавление ответа")
     @PostMapping("/answer/add")
     @ResponseStatus(HttpStatus.CREATED)

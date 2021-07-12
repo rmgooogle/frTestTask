@@ -26,6 +26,15 @@ public class AnswerServiceImp implements AnswerService {
     }
 
     @Override
+    public AnswerDto getAnswerById(Long id) {
+        Optional<Answer> answerOptional = answerRepo.findById(id);
+        if (answerOptional.isEmpty()) {
+            throw new AnswerNotFoundException("Answer not found");
+        }
+        return modelMapper.map(answerOptional.get(), AnswerDto.class);
+    }
+
+    @Override
     public void create(AnswerDto answerDto) {
         answerRepo.save(modelMapper.map(answerDto, Answer.class));
     }
@@ -40,10 +49,13 @@ public class AnswerServiceImp implements AnswerService {
         if (answerOptional.isEmpty()) {
             throw new AnswerNotFoundException("Question not found");
         }
-        if ((questionOptional.get().getPoll().getStartDate() == null)
-                && (answerOptional.get().getQuestion().getPoll().getStartDate() == null)) {
-            answerOptional.get().setQuestion(questionOptional.get());
-            answerRepo.save(answerOptional.get());
+        Question question = questionOptional.get();
+        Answer answer = answerOptional.get();
+        //TODO if ||
+        if ((question.getPoll().getStartDate() == null)
+                && (answer.getQuestion().getPoll().getStartDate() == null)) {
+            answer.setQuestion(question);
+            answerRepo.save(answer);
         } else throw new PollIsStartException("Poll is started");
     }
 
@@ -51,6 +63,6 @@ public class AnswerServiceImp implements AnswerService {
     public void deleteById(Long id) {
         if (answerRepo.getById(id).getQuestion().getPoll().getStartDate() == null) {
             answerRepo.deleteById(id);
-        }
+        } else throw new PollIsStartException("Poll is started");
     }
 }

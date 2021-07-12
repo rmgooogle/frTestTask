@@ -12,6 +12,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AnswerDto {
 
+    /**
+     * {@link Answer#getId()}
+     */
+    private Long id;
 
     /**
      * {@link Answer#getAnswer()}

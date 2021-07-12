@@ -24,15 +24,4 @@ public class QuestionSetDto {
      * {@link Question#getAnswerType()}
      */
     private AnswerType answerType;
-
-//    *//**
-//     * {@link Question#getAnswers()}
-//     *//*
-//    private Set<AnswerDto> answers;
-//
-//    *//**
-//     * {@link Question#getUserAnswers()}
-//     *//*
-//    private */Set<UserAnswersDto> userAnswers;
-
 }
